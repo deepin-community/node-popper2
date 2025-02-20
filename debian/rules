@@ -1,4 +1,28 @@
 #!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+BROWSERDEST=usr/share/javascript/popperjs2
 
 %:
 	dh $@
+
+override_dh_auto_build:
+	babeljs src -d lib --ignore '**/*.test.js','**/__mocks__'
+	BROWSER_COMPAT=true babeljs src -d dist/esm --ignore '**/*.test.js','**/__mocks__'
+	rollup -c .config/rollup.config.js
+	debian/build_modules/@khanacademy/flow-to-ts/src/flow-to-ts.js "src/**/*.js" --write --inline-utility-types
+	debian/build_modules/@fezvrasta/tsc-silent/bin/tsc-silent --project .config/tsconfig.json --createSourceFile .config/createSourceFile.js --suppress @
+	find src -name '*.ts' -delete
+	patch -p1 < debian/patches/fix-types.patch
+
+override_dh_install:
+	dh_install
+	mkdir -p debian/node-popper2/usr/share/javascript
+	mv debian/node-popper2/usr/share/nodejs/@popperjs/core/dist/umd/ \
+		debian/node-popper2/$(BROWSERDEST)
+
+override_dh_auto_test:
+	dh_auto_test || true # Missing dependencies make the tests fail

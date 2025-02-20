@@ -1,5 +1,64 @@
-template-repository (1.0-1) unstable; urgency=medium
+node-popper2 (2.11.2-8) unstable; urgency=medium
 
-  * Initial release
+  * Team upload
+  * Upload to unstable
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Bastien Roucariès <rouca@debian.org>  Sat, 09 Nov 2024 22:32:13 +0000
+
+node-popper2 (2.11.2-7) experimental; urgency=medium
+
+  * Team upload
+  * Unfuzz patch (Closes: #1055659)
+  * Update lintian overrides
+
+ -- Ananthu C V <weepingclown@disroot.org>  Tue, 14 Nov 2023 21:16:25 +0530
+
+node-popper2 (2.11.2-6) unstable; urgency=medium
+
+  * Team upload
+  * Back to unstable
+
+ -- Yadd <yadd@debian.org>  Sun, 16 Jul 2023 07:54:19 +0400
+
+node-popper2 (2.11.2-5) experimental; urgency=medium
+
+  * Team upload
+  * Update standards version to 4.6.2, no changes needed.
+  * Build typescript declarations
+
+ -- Yadd <yadd@debian.org>  Tue, 18 Apr 2023 07:13:39 +0400
+
+node-popper2 (2.11.2-4) unstable; urgency=medium
+
+  * Team upload
+  * Replace /releases by /tags in GitHub urls
+
+ -- Yadd <yadd@debian.org>  Mon, 31 Oct 2022 12:02:42 +0100
+
+node-popper2 (2.11.2-3) unstable; urgency=medium
+
+  * Team upload
+
+  [ Debian Janitor ]
+  * Apply multi-arch hints. + node-popper2: Add Multi-Arch: foreign.
+
+  [ Yadd ]
+  * Update standards version to 4.6.1, no changes needed.
+  * Add fix for rollup 3 (Closes: #1022659)
+
+ -- Yadd <yadd@debian.org>  Thu, 27 Oct 2022 14:45:46 +0200
+
+node-popper2 (2.11.2-2) unstable; urgency=medium
+
+  * Team upload
+  * Build files using rollup and babel (Closes: #1008666)
+  * Provides libjs-popper2
+  * Drop crazy test
+
+ -- Yadd <yadd@debian.org>  Wed, 30 Mar 2022 15:25:08 +0200
+
+node-popper2 (2.11.2-1) unstable; urgency=medium
+
+  * Initial release.
+
+ -- Roland Mas <lolando@debian.org>  Fri, 11 Mar 2022 15:29:41 +0100

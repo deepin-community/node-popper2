@@ -1,0 +1,6 @@
+# Files are readable
+source-is-missing [debian/build_modules/@khanacademy/flow-to-ts/*]
+source-contains-prebuilt-javascript-object [debian/build_modules/@khanacademy/flow-to-ts/*]
+source-contains-prebuilt-javascript-object [src/popper-lite.js]
+very-long-line-length-in-source-file * > 512 [debian/build_modules/@khanacademy/flow-to-ts/*]
+very-long-line-length-in-source-file *debian/build_modules/utility-types/dist/index.d.ts*

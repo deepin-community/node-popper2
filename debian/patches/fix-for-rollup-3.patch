@@ -1,0 +1,26 @@
+Description: fix for rollup 3
+Author: Yadd <yadd@debian.org>
+Bug-Debian: https://bugs.debian.org/1022659
+Forwarded: not-needed
+Last-Update: 2022-10-27
+
+--- a/.config/rollup.config.js
++++ b/.config/rollup.config.js
+@@ -1,7 +1,7 @@
+-import babel from '@rollup/plugin-babel';
+-import replace from '@rollup/plugin-replace';
+-import { terser } from 'rollup-plugin-terser';
+-import pkg from '../package.json';
++const babel = require('@rollup/plugin-babel');
++const replace = require('@rollup/plugin-replace');
++const { terser } = require('rollup-plugin-terser');
++const pkg = require('../package.json');
+ 
+ const getFileName = (input) => input.split('/')[1].split('.')[0];
+ 
+@@ -37,4 +37,4 @@
+   )
+   .flat();
+ 
+-export default configs;
++module.exports = configs;
