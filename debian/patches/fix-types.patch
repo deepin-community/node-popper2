@@ -1,0 +1,51 @@
+Description: fix for rollup 3
+Author: Yadd <yadd@debian.org>
+Forwarded: not-needed
+Last-Update: 2023-04-18
+
+--- a/lib/utils/detectOverflow.d.ts
++++ b/lib/utils/detectOverflow.d.ts
+@@ -1,7 +1,8 @@
+-import type { State, SideObject, Padding } from "../types";
++import type { State, SideObject, Padding, PositioningStrategy } from "../types";
+ import type { Placement, Boundary, RootBoundary, Context } from "../enums";
+ export type Options = {
+     placement: Placement;
++    strategy: PositioningStrategy;
+     boundary: Boundary;
+     rootBoundary: RootBoundary;
+     elementContext: Context;
+--- a/lib/types.d.ts
++++ b/lib/types.d.ts
+@@ -114,7 +114,7 @@ export type ModifierArguments<Options ex
+     options: Partial<Options>;
+     name: string;
+ };
+-export type Modifier<Name, Options> = {
++export type Modifier<Name, Options extends Obj> = {
+     name: Name;
+     enabled: boolean;
+     phase: ModifierPhases;
+--- a/lib/dom-utils/getViewportRect.d.ts
++++ b/lib/dom-utils/getViewportRect.d.ts
+@@ -1,4 +1,5 @@
+-export default function getViewportRect(element: Element): {
++import type { PositioningStrategy } from "../types";
++export default function getViewportRect(element: Element, strategy: PositioningStrategy): {
+     width: number;
+     height: number;
+     x: number;
+--- a/lib/dom-utils/getBoundingClientRect.d.ts
++++ b/lib/dom-utils/getBoundingClientRect.d.ts
+@@ -1,2 +1,2 @@
+ import type { ClientRectObject, VirtualElement } from "../types";
+-export default function getBoundingClientRect(element: Element | VirtualElement, includeScale?: boolean): ClientRectObject;
++export default function getBoundingClientRect(element: Element | VirtualElement, includeScale?: boolean, isFixedStrategy?: boolean): ClientRectObject;
+--- a/lib/dom-utils/getClippingRect.d.ts
++++ b/lib/dom-utils/getClippingRect.d.ts
+@@ -1,3 +1,3 @@
+-import type { ClientRectObject } from "../types";
++import type { ClientRectObject, PositioningStrategy } from "../types";
+ import type { Boundary, RootBoundary } from "../enums";
+-export default function getClippingRect(element: Element, boundary: Boundary, rootBoundary: RootBoundary): ClientRectObject;
++export default function getClippingRect(element: Element, boundary: Boundary, rootBoundary: RootBoundary, strategy: PositioningStrategy): ClientRectObject;

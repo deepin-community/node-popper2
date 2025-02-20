@@ -1,0 +1,6 @@
+# yarnpkg clean
+# yarnpkg build:es
+# yarnpkg build:esbrowser
+# yarnpkg build:bundles
+# yarnpkg build:flow
+# yarnpkg build:typescript
